@@ -55,7 +55,7 @@ drivers, desktop and tools that fit the machine.
 | `amix-gcc-14` | gcc 14.2.0 (C, C++) + binutils 2.43.1 for `m68k-elf` with AMIX specs: applications | `/opt/m68k-amix` |
 | `amix-amixc99` | libamixc99: the C99/POSIX functions AMIX's libc lacks | sysroot |
 | `amix-pvmk` | pvmk boot block and microkernel, `mkadf`, `mkhdf` | `/usr/share/pvmk`, `/usr/lib/pvmk` |
-| `amix-kernel-kit-tools` | the boot hook and relocation check every kernel relink uses | `/usr/share/amix-installer/kit-tools` |
+| `amix-kernel-kit-tools` | the driver chains, relocation check and root stamp of every kernel relink; `amix-kernel-040`, which makes our 68040/060 kernel from your stock one | `/usr/share/amix-installer/kit-tools`, `kernel-040` |
 | `amix-rtgfb-kit` | Picasso II driver kit (`/dev/rtgfb`) | `/usr/share/amix-installer/rtgfb` |
 | `amix-zz9000-kit` | MNT ZZ9000 driver kit (`/dev/zz9000`) | `/usr/share/amix-installer/zz9000` |
 | `amix-hydra-kit` | HydraNet Ethernet driver kit (`/dev/hya0`) | `/usr/share/amix-installer/hydra` |
@@ -63,6 +63,7 @@ drivers, desktop and tools that fit the machine.
 | `amix-xsurf100-kit` | X-Surf 100 Ethernet driver kits, both kernel lines (`/dev/xsf0`) | `/usr/share/amix-installer/xsurf100*` |
 | `amix-zz9000eth-kit` | ZZ9000 Ethernet driver kits, both kernel lines (`/dev/zz0`) | `/usr/share/amix-installer/zz9000eth*` |
 | `amix-z3660eth-kit` | Z3660 Ethernet driver kit for the 68040/060 kernels (`/dev/zen0`) | `/usr/share/amix-installer/z3660eth-040` |
+| `amix-z3660scsi-kit` | the Z3660's SD card as a SCSI controller, for the 68040/060 kernels | `/usr/share/amix-installer/z3660scsi-040` |
 | `amix-cross-dev` | everything for cross development (metapackage) | |
 
 `amix-installer` recommends the pvmk, gcc-27 and kit packages, so a plain

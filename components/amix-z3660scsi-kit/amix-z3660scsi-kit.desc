@@ -1,0 +1,5 @@
+The z3660scsi AMIX kernel driver: the Z3660's SD card as a second SCSI
+controller of AMIX's own dd/sd driver (block 18, character 40), as a kit for
+the 68040/060 port kernels (z3660scsi-040).  The AMIX Installer links it into
+the port kernel when the AMIX disks are on the Z3660's SD card; the Z3660
+kernel line has it built in.  No AMIX kernel is included.

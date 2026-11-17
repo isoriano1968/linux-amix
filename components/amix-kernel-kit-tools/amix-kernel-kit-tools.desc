@@ -1,5 +1,8 @@
-The shared pieces every AMIX Installer kernel relink uses: patch_io_init.py
-(it points AMIX's boot table io_init at the installer's amixdrv_init, which
-calls parinit and then each chosen driver's init), check_relink_relocs.py
-(the loader's relocation check on the result) and the amixdrv_init stub
-template, in /usr/share/amix-installer/kit-tools.
+The shared pieces of the AMIX Installer's kernels, in /usr/share/amix-installer:
+kit-tools/ (patch_io_init.py and patch_int2.py with their stub templates: the
+boot and level-2 interrupt chains of the linked drivers; check_relink_relocs.py,
+the loader's relocation check; stamp-rootcard.py, the root and swap device;
+kernel-nswap.py, the swap size) and kernel-040/ (amix-kernel-040 and the
+port's relink chain, which make our 68040/060 kernel from your own stock AMIX
+2.1c kernel; it uses NetBSD 10.1's syssrc.tgz, which the installer fetches once).
+No AMIX kernel is included.

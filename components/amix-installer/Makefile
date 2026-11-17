@@ -9,7 +9,7 @@ DEPENDS   = python3 (>= 3.9), python3-gi, gir1.2-gtk-4.0 (>= 4.12), gir1.2-adw-1
 # what it needs to make kernels and boot disks: installed with it by default
 RECOMMENDS = amix-pvmk, amix-gcc-27, amix-kernel-kit-tools, amix-rtgfb-kit, \
 	amix-zz9000-kit, amix-va2000-kit, amix-hydra-kit, amix-xsurf100-kit, \
-	amix-zz9000eth-kit, amix-z3660eth-kit, fs-uae, xdg-user-dirs
+	amix-zz9000eth-kit, amix-z3660eth-kit, amix-z3660scsi-kit, fs-uae, xdg-user-dirs
 SUMMARY   = makes Amiga UNIX (AMIX) disks for an Amiga or FS-UAE
 
 SOURCES   = au
