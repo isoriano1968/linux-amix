@@ -57,7 +57,7 @@ drivers, desktop and tools that fit the machine.
 | `amix-pvmk` | pvmk boot block and microkernel, `mkadf`, `mkhdf` | `/usr/share/pvmk`, `/usr/lib/pvmk` |
 | `amix-kernel-kit-tools` | the driver chains, relocation check and root stamp of every kernel relink; `amix-kernel-040`, which makes our 68040/060 kernel from your stock one | `/usr/share/amix-installer/kit-tools`, `kernel-040` |
 | `amix-rtgfb-kit` | Picasso II driver kit (`/dev/rtgfb`) | `/usr/share/amix-installer/rtgfb` |
-| `amix-zz9000-kit` | MNT ZZ9000 driver kit (`/dev/zz9000`) | `/usr/share/amix-installer/zz9000` |
+| `amix-zz9000-kit` | MNT ZZ9000 driver kit (`/dev/zz9000`); the same driver also serves the Z3660's RTG graphics (see below) | `/usr/share/amix-installer/zz9000` |
 | `amix-hydra-kit` | HydraNet Ethernet driver kit (`/dev/hya0`) | `/usr/share/amix-installer/hydra` |
 | `amix-va2000-kit` | MNT VA2000 driver kits, stock and 68040/060 kernels (`/dev/va2000`) | `/usr/share/amix-installer/va2000*` |
 | `amix-xsurf100-kit` | X-Surf 100 Ethernet driver kits, both kernel lines (`/dev/xsf0`) | `/usr/share/amix-installer/xsurf100*` |
@@ -65,6 +65,13 @@ drivers, desktop and tools that fit the machine.
 | `amix-z3660eth-kit` | Z3660 Ethernet driver kit for the 68040/060 kernels (`/dev/zen0`) | `/usr/share/amix-installer/z3660eth-040` |
 | `amix-z3660scsi-kit` | the Z3660's SD card as a SCSI controller, for the 68040/060 kernels | `/usr/share/amix-installer/z3660scsi-040` |
 | `amix-cross-dev` | everything for cross development (metapackage) | |
+
+**ZZ9000 and Z3660 graphics.** The ZZ9000 driver also drives the RTG
+graphics of the Z3660 accelerator. On 68040/060 machines it is built into the
+Z3660 variant of the port kernel (`amix-kernel-040 --variant z3660`); a
+separate `z3660rtg` kit is in preparation. The Z3660's HDMI output is
+RGB565 only: it offers 8-, 15- and 16-bit modes, but **no 24/32-bit modes**
+(those are a ZZ9000 feature). X therefore runs the Z3660 at 16 bpp.
 
 `amix-installer` recommends the pvmk, gcc-27 and kit packages, so a plain
 `apt install amix-installer` brings everything it needs to make kernels and
@@ -107,7 +114,30 @@ make test-install     # install from it into a clean container and smoke-test
 ```
 
 One package alone: `sh tools/build-in-docker.sh amix-hydra-kit` (the
-packages it needs are taken from `out/debs`). Downloads are kept in
+packages it needs are taken from `out/debs`).
+
+### Building without Docker
+
+Docker is only a convenience that keeps the build off your system; using the
+packages never needs it. On Debian 13 (or a Debian-based system of the same
+release) you can build natively. The build runs as root, because each
+component is installed with apt before the next one builds (the compilers go
+to `/opt`), so do it on a machine or VM where that is acceptable:
+
+```sh
+sudo apt install build-essential make m4 bison flex patch file curl \
+    ca-certificates xz-utils bzip2 gzip tar autotools-dev dpkg-dev lintian \
+    libgmp-dev libmpfr-dev libmpc-dev zlib1g-dev libzstd-dev \
+    python3 python3-cairo python3-gi gir1.2-gtk-4.0 gir1.2-adw-1
+sudo make world        # every package in order into out/debs, each installed
+                       # on this system before the next one builds
+make repo              # the apt repository in out/repo
+```
+
+That is the same list as `docker/Dockerfile`. `make -C components/<name> deb`
+builds one package (its build dependencies must be installed already).
+Afterwards install from `out/repo` as under [Install](#install); the packages
+`make world` installed are the same ones. Downloads are kept in
 `distfiles/` and checked against the sha256 in each recipe.
 
 ## Status
