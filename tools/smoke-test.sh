@@ -53,4 +53,17 @@ for ids in sets:
 shutil.rmtree(d)
 PY
 fi
+if [ -f /kernel/unix ] && [ -n "${AMIX_TEST_K040:-}" ]; then
+	echo "== our 68040/060 kernel from the stock one (amix-kernel-040)"
+	DEBIAN_FRONTEND=noninteractive apt-get install -y -qq binutils-m68k-linux-gnu gcc-m68k-linux-gnu >/dev/null
+	python3 -I - <<'PY'
+import sys
+sys.path.insert(0, "/usr/lib/amix-installer")
+from amix_installer import kernel
+import hashlib
+base = open("/kernel/unix", "rb").read()
+data, info = kernel.make_040(base, "generic", root=(0, 6))
+print("generic", hashlib.sha256(data).hexdigest(), info.get("buildid"), "nswap", info.get("nswap"))
+PY
+fi
 echo "smoke test: ok"

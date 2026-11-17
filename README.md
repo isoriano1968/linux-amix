@@ -102,6 +102,8 @@ pinned downloads, and some GB of free disk for the compiler builds.
 make docker           # all packages, in order, into out/debs
 make repo             # the apt repository in out/repo
 make test-install     # install from it into a clean container and smoke-test
+                      # (AMIX_TEST_KERNEL=unix: relinks it with every kit;
+                      #  AMIX_TEST_K040=1: also makes the 68040/060 kernel)
 ```
 
 One package alone: `sh tools/build-in-docker.sh amix-hydra-kit` (the
@@ -112,6 +114,10 @@ packages it needs are taken from `out/debs`). Downloads are kept in
 
 - The installer, the sysroot, both compilers, pvmk and the kits are the same
   builds as the OpenIndiana packages; the AMIX Installer runs on both.
+- The installer makes our 68040/060 kernels from your own stock kernel with
+  `amix-kernel-040` (amix-kernel-kit-tools), fetching NetBSD 10.1's
+  `syssrc.tgz` once (76 MB); today this needs Debian's `binutils-m68k-linux-gnu`
+  and `gcc-m68k-linux-gnu`, which amix-kernel-kit-tools recommends.
 - Every kit links into a stock AMIX kernel (and the 040 kits into a 68040/060
   port kernel) with every check passing, alone and all together; boot tests
   of the new kernels, in FS-UAE and on the real cards, are still to come.
