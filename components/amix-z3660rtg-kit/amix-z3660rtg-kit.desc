@@ -1,0 +1,5 @@
+The z3660rtg AMIX kernel driver (/dev/z3660rtg, major 55) for the Z3660
+accelerator's RTG graphics (RGB565 HDMI: 8, 15 and 16-bit modes, no 24/32),
+as a kit for the generic 68040/060 port kernel (z3660rtg-040).  The Z3660
+kernel variant has the driver built in and takes no kit.  No AMIX kernel is
+included.

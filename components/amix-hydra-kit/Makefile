@@ -1,8 +1,10 @@
-# The Hydra Systems AmigaNet kernel driver as an AMIX Installer kit.
+# The Hydra Systems AmigaNet kernel driver as AMIX Installer kits, for both kernel lines.
 KIT       = hydra
 VERSION   = 0.4
+REVISION  = 2
+KIT_LINES = 030 040
 SUMMARY   = AMIX kernel driver kit: HydraNet Ethernet (/dev/hya0)
-GATE_COMMIT = eca59c195bcf7ee6d2255568d7529f06d0d9acd7
-GATE_SHA256 = 49d201b366ebc1a06a5fae9f643a88655d714065f561210ca46493d34b0e59b3
+GATE_COMMIT = 82bd7df1f373f6fc4049b1f22fcdddfb0deb06c8
+GATE_SHA256 = 39c859fa8de4ff1a823dd84be33b92c62bb66a43d61a69aa12526a271ee16b4b
 
 include ../../make-rules/kit.mk

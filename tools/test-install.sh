@@ -5,7 +5,8 @@
 # cross tools; both compilers build an AMIX program.
 # AMIX_TEST_KERNEL=/path/to/a/stock/unix also relinks it with every kit;
 # AMIX_TEST_K040=1 also makes the 68040/060 kernel from it (fetches NetBSD's
-# syssrc.tgz, 76 MB, and Debian's m68k-linux-gnu tools).
+# syssrc.tgz, 76 MB; amix-gcc-14's m68k-elf tools only) and links every
+# 040 kit into it.
 set -eu
 repo=$(cd "${1:?usage: test-install.sh REPO}" && pwd)
 here=$(cd "$(dirname "$0")" && pwd)

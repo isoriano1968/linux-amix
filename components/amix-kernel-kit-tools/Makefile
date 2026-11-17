@@ -8,17 +8,17 @@ VERSION   = 0.3
 ARCH      = all
 SECTION   = devel
 SUMMARY   = AMIX Installer kernel tools: driver chains, root stamp, amix-kernel-040
-DEPENDS   = python3, amix-gcc-27 (>= 2.7.2.3), amix-gcc-14 (>= 14.2.0), amix-sysroot (>= 2.1.2)
-# amix-kernel-040's pinned byte checks are made with m68k-linux-gnu binutils;
-# with them it needs nothing else (m68k-elf from amix-gcc-14 otherwise)
-RECOMMENDS = binutils-m68k-linux-gnu, gcc-m68k-linux-gnu
+REVISION  = 2
+# amix-kernel-040 makes the same kernel with m68k-elf (amix-gcc-14) or
+# m68k-linux-gnu binutils (amix-gate 6a47917); GNU tar for NetBSD's sources
+DEPENDS   = python3, tar, amix-gcc-27 (>= 2.7.2.3), amix-gcc-14 (>= 14.2.0), amix-sysroot (>= 2.1.2)
 SUGGESTS  = amix-installer
 
 SOURCES   = gate
-GATE_COMMIT = eca59c195bcf7ee6d2255568d7529f06d0d9acd7
+GATE_COMMIT = 82bd7df1f373f6fc4049b1f22fcdddfb0deb06c8
 URL_gate    = https://github.com/isoriano1968/amix-gate/archive/$(GATE_COMMIT).tar.gz
 FILE_gate   = amix-gate-$(GATE_COMMIT).tar.gz
-SHA256_gate = 49d201b366ebc1a06a5fae9f643a88655d714065f561210ca46493d34b0e59b3
+SHA256_gate = 39c859fa8de4ff1a823dd84be33b92c62bb66a43d61a69aa12526a271ee16b4b
 DIR_gate    = amix-gate-$(GATE_COMMIT)
 
 SYSROOT   = /opt/m68k-amix-sysroot

@@ -56,9 +56,10 @@ drivers, desktop and tools that fit the machine.
 | `amix-amixc99` | libamixc99: the C99/POSIX functions AMIX's libc lacks | sysroot |
 | `amix-pvmk` | pvmk boot block and microkernel, `mkadf`, `mkhdf` | `/usr/share/pvmk`, `/usr/lib/pvmk` |
 | `amix-kernel-kit-tools` | the driver chains, relocation check and root stamp of every kernel relink; `amix-kernel-040`, which makes our 68040/060 kernel from your stock one | `/usr/share/amix-installer/kit-tools`, `kernel-040` |
-| `amix-rtgfb-kit` | Picasso II driver kit (`/dev/rtgfb`) | `/usr/share/amix-installer/rtgfb` |
-| `amix-zz9000-kit` | MNT ZZ9000 driver kit (`/dev/zz9000`); the same driver also serves the Z3660's RTG graphics (see below) | `/usr/share/amix-installer/zz9000` |
-| `amix-hydra-kit` | HydraNet Ethernet driver kit (`/dev/hya0`) | `/usr/share/amix-installer/hydra` |
+| `amix-rtgfb-kit` | Picasso II driver kits, both kernel lines (`/dev/rtgfb`) | `/usr/share/amix-installer/rtgfb*` |
+| `amix-zz9000-kit` | MNT ZZ9000 driver kits, both kernel lines (`/dev/zz9000`) | `/usr/share/amix-installer/zz9000*` |
+| `amix-z3660rtg-kit` | Z3660 RTG driver kit for the generic 68040/060 kernel (`/dev/z3660rtg`) | `/usr/share/amix-installer/z3660rtg-040` |
+| `amix-hydra-kit` | HydraNet Ethernet driver kits, both kernel lines (`/dev/hya0`) | `/usr/share/amix-installer/hydra*` |
 | `amix-va2000-kit` | MNT VA2000 driver kits, stock and 68040/060 kernels (`/dev/va2000`) | `/usr/share/amix-installer/va2000*` |
 | `amix-xsurf100-kit` | X-Surf 100 Ethernet driver kits, both kernel lines (`/dev/xsf0`) | `/usr/share/amix-installer/xsurf100*` |
 | `amix-zz9000eth-kit` | ZZ9000 Ethernet driver kits, both kernel lines (`/dev/zz0`) | `/usr/share/amix-installer/zz9000eth*` |
@@ -68,8 +69,8 @@ drivers, desktop and tools that fit the machine.
 
 **ZZ9000 and Z3660 graphics.** The ZZ9000 driver also drives the RTG
 graphics of the Z3660 accelerator. On 68040/060 machines it is built into the
-Z3660 variant of the port kernel (`amix-kernel-040 --variant z3660`); a
-separate `z3660rtg` kit is in preparation. The Z3660's HDMI output is
+Z3660 variant of the port kernel (`amix-kernel-040 --variant z3660`); for the
+generic variant, `amix-z3660rtg-kit` has it as its own driver, `/dev/z3660rtg`. The Z3660's HDMI output is
 RGB565 only: it offers 8-, 15- and 16-bit modes, but **no 24/32-bit modes**
 (those are a ZZ9000 feature). X therefore runs the Z3660 at 16 bpp.
 
@@ -146,8 +147,8 @@ Afterwards install from `out/repo` as under [Install](#install); the packages
   builds as the OpenIndiana packages; the AMIX Installer runs on both.
 - The installer makes our 68040/060 kernels from your own stock kernel with
   `amix-kernel-040` (amix-kernel-kit-tools), fetching NetBSD 10.1's
-  `syssrc.tgz` once (76 MB); today this needs Debian's `binutils-m68k-linux-gnu`
-  and `gcc-m68k-linux-gnu`, which amix-kernel-kit-tools recommends.
+  `syssrc.tgz` once (76 MB), with the m68k-elf tools of amix-gcc-14 (Debian's
+  m68k-linux-gnu tools give the same kernel, byte for byte).
 - Every kit links into a stock AMIX kernel (and the 040 kits into a 68040/060
   port kernel) with every check passing, alone and all together; boot tests
   of the new kernels, in FS-UAE and on the real cards, are still to come.

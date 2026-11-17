@@ -55,7 +55,8 @@ PY
 fi
 if [ -f /kernel/unix ] && [ -n "${AMIX_TEST_K040:-}" ]; then
 	echo "== our 68040/060 kernel from the stock one (amix-kernel-040)"
-	DEBIAN_FRONTEND=noninteractive apt-get install -y -qq binutils-m68k-linux-gnu gcc-m68k-linux-gnu >/dev/null
+	# with amix-gcc-14's m68k-elf tools only, no Debian m68k-linux-gnu
+	! command -v m68k-linux-gnu-as >/dev/null
 	python3 -I - <<'PY'
 import sys
 sys.path.insert(0, "/usr/lib/amix-installer")
@@ -64,6 +65,14 @@ import hashlib
 base = open("/kernel/unix", "rb").read()
 data, info = kernel.make_040(base, "generic", root=(0, 6))
 print("generic", hashlib.sha256(data).hexdigest(), info.get("buildid"), "nswap", info.get("nswap"))
+import os, shutil, tempfile
+d = tempfile.mkdtemp()
+have = [k for k in sorted(kernel.DRIVERS) if "040" in kernel.DRIVERS[k].lines
+        and kernel.find_kit(k, "040")]
+order = {kd: i for i, kd in enumerate(kernel.KIND_ORDER)}
+for ids in [[k] for k in have] + [sorted(have, key=lambda k: order[kernel.DRIVERS[k].kind])]:
+    print("040 +" + "+".join(ids), kernel.relink(data, d + "/u", ids))
+shutil.rmtree(d)
 PY
 fi
 echo "smoke test: ok"
