@@ -19,8 +19,8 @@ A GNOME app that makes an AMIX disk for one machine from **your own** AMIX
 running AMIX). It never ships Commodore's files: it adds the open kernel,
 drivers, desktop and tools that fit the machine.
 
-- Machines: Amiga 3000, Amiga 2500, FS-UAE; CPU cards up to the 68060
-  (Z3660, Mercury, A2630).
+- Machines: Amiga 3000, Amiga 2500, Amiga 4000 (with a 68040 or 68060
+  card), FS-UAE; CPU cards up to the 68060 (Z3660, Mercury, A3640, A2630).
 - Graphics: Z3660 RTG, Picasso II, MNT ZZ9000, MNT VA2000, or the chipset.
 - Network: A2065, Z3660 Ethernet, Hydra Systems AmigaNet, Individual
   Computers X-Surf 100, the ZZ9000's Ethernet port.
@@ -34,6 +34,9 @@ drivers, desktop and tools that fit the machine.
   configuration (`zuluscsi.ini`, `bluescsi.ini`, `z3660cfg.txt`), stops if an
   ID the AMIX disks need is taken, and adds their entries. Then it installs
   the packages over the network.
+- Files that exist in the output folder are overwritten (a file it did not
+  write only after you confirm it) or kept as `.bak`; the old files are
+  replaced only when every new one is written and checked.
 
 <p align="center">
 <img src="doc/screenshots/2-machine-dark.png" alt="Machine" width="400">

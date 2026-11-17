@@ -33,14 +33,17 @@ with the reason.
    AMIX) and where the result goes (Z3660 SD card, ZuluSCSI/BlueSCSI SD card,
    or HDF files only, e.g. for FS-UAE). For an SD card, choose the card
    itself (or the Z3660's `hdf` folder): the installer reads its
-   configuration and shows which SCSI IDs are in use. Choose your core HDF here; the
+   configuration and shows which SCSI IDs are in use. **Files that exist
+   already** says what happens to files of the same name in that folder:
+   overwritten, or kept as `NAME.YYYYMMDD-HHMMSS.bak`. Choose your core HDF here; the
    installer reads it, read-only, and shows its partitions, the packages
    already installed and its kernels. For FS-UAE, choose your Kickstart ROM.
 
    ![Base system](screenshots/1-base-system.png)
 
-2. **Machine.** The Amiga (3000, 2500 or FS-UAE), the CPU card (Z3660,
-   Mercury, A2630...), the network card the install runs over (it gets the
+2. **Machine.** The Amiga (3000, 2500, 4000 or FS-UAE), the CPU card (Z3660,
+   Mercury, A3640, A2630...; an A4000 runs AMIX with a 68040 or 68060 card
+   and our 68040/060 kernels, its disks on the Z3660's SD card), the network card the install runs over (it gets the
    host name's address), any further network cards (driver only: set their
    addresses on AMIX), and the keyboard.
 
@@ -74,6 +77,14 @@ with the reason.
    top right, opens one again); paths are not saved in profiles.
 
    ![Summary](screenshots/8-summary-dark.png)
+
+If files of the same name exist in the folder, the Summary lists them, with
+**Overwrite** / **Keep a Backup** and **Choose Another Folder…**. A file the
+installer did not write (it is not in an earlier run's `amix-installer.json`)
+is overwritten only after you confirm it by name. Every new file is written
+as `.part` and checked; only when all of them are does the installer replace
+the old ones (or rename them to `.bak`), so a failed run leaves them as they
+were.
 
 What **Create disks** writes, next to each other in the folder you chose:
 
@@ -124,7 +135,9 @@ amix-installer --source AMIGA_UNIX.hdf --out ~/amix --net           # serve the 
 ```
 
 `--profile FILE` loads saved choices; `--patch-disk ADF` applies the AmigaUNIX
-2.1 patch disk when the core lacks it.
+2.1 patch disk when the core lacks it. `--backup` keeps files of the same
+name as `.bak`; `--overwrite` replaces them, also ones the installer did not
+write.
 
 ## 5. Cross compiling for AMIX
 
