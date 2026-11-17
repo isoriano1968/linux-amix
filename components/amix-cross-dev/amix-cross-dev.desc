@@ -1,0 +1,4 @@
+Installs a complete Amiga UNIX (AMIX) cross development system: the AMIX
+2.1c sysroot (/opt/m68k-amix-sysroot), gcc 2.7.2.3 for the kernel, drivers
+and modules (/opt/amix-cross), gcc 14.2.0 with C++ for AMIX applications
+(/opt/m68k-amix), and libamixc99.

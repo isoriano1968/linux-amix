@@ -1,0 +1,4 @@
+pvmk (SORIX-ILOM-LDOM), the boot loader and paravirtualising microkernel for
+the Amiga 3000 (68030, 68040, 68060): its boot block, its image and the boot
+menu template in /usr/share/pvmk, and the host tools mkadf and mkhdf in
+/usr/lib/pvmk, with which the AMIX Installer writes the pvmk boot disk.

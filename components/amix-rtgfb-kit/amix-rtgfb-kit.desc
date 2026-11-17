@@ -1,0 +1,4 @@
+The rtgfb AMIX kernel driver (/dev/rtgfb, major 54) as a kit for the AMIX
+Installer: our own 68030 object files and the relink scripts, which the
+installer links into your own stock AMIX 2.1c kernel on this computer, for
+a Picasso II graphics card (also FS-UAE's).  No AMIX kernel is included.

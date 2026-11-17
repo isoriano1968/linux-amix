@@ -1,0 +1,6 @@
+The Amiga UNIX (AMIX) 2.1c system headers, libraries, startup objects, X11
+and kernel relink kit at patch level 2a, as published in amigaux/amix-system
+under Amiga Corporation's approval, in /opt/m68k-amix-sysroot.  Absolute
+links are made relative to the sysroot, so nothing points into the host.
+
+The AMIX cross compilers (amix-gcc-27, amix-gcc-14) build and link against it.

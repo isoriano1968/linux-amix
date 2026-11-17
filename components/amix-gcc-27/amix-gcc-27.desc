@@ -1,0 +1,8 @@
+The C compiler AMIX itself is built with: gcc 2.7.2.3 and binutils 2.8.1 for
+m68k-cbm-sysv4 (AMIX 2.1 on the Amiga 3000), with the AMIX fixes from
+amix-userland, in /opt/amix-cross.  m68k-cbm-sysv4-gcc is a wrapper that
+compiles and links against the AMIX sysroot (/opt/m68k-amix-sysroot).
+
+Use it for the kernel, device drivers and anything that must be
+object-compatible with AMIX; the AMIX Installer links its kernels with its
+ld and as.  For applications use amix-gcc-14.

@@ -1,0 +1,5 @@
+The hydra AMIX kernel driver (/dev/hya0, major 47, STREAMS/DLPI) as a kit
+for the AMIX Installer: object files and relink scripts the installer
+links into your own stock AMIX 2.1c kernel, for a Hydra Systems AmigaNet
+Ethernet card (Zorro II, found through AutoConfig).  No AMIX kernel is
+included.

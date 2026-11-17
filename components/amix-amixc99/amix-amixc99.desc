@@ -1,0 +1,3 @@
+libamixc99.a, the C99 and POSIX functions AMIX SVR4.0's libc lacks (as
+linked by amix-gcc-14), with its headers and pkg-config file, in the AMIX
+sysroot /opt/m68k-amix-sysroot/usr/local, for builds that name it.

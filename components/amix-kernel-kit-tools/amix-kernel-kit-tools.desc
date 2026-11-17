@@ -1,0 +1,5 @@
+The shared pieces every AMIX Installer kernel relink uses: patch_io_init.py
+(it points AMIX's boot table io_init at the installer's amixdrv_init, which
+calls parinit and then each chosen driver's init), check_relink_relocs.py
+(the loader's relocation check on the result) and the amixdrv_init stub
+template, in /usr/share/amix-installer/kit-tools.

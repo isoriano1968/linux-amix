@@ -1,0 +1,6 @@
+A GNOME app (GTK 4, libadwaita) that makes an Amiga UNIX (AMIX) disk for one
+machine from your own AMIX 2.1c core system: a core HDF, a tape image with
+its root floppy, or a running AMIX system.  It adds the kernel, drivers,
+desktop and tools from amix-userland and amix-gate that fit the machine,
+links the chosen cards' drivers into your own kernel, writes the pvmk boot
+disk and an FS-UAE configuration.  It never ships Commodore's files.

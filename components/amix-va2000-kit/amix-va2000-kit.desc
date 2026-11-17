@@ -1,0 +1,4 @@
+The va2000 AMIX kernel driver (/dev/va2000, major 68) as two kits for the
+AMIX Installer: va2000 for the stock 68030 kernel and va2000-040 for the
+68040/060 port kernels.  The installer links the one for your kernel's line
+into it on this computer.  No AMIX kernel is included.
