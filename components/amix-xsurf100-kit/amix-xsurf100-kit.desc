@@ -1,0 +1,5 @@
+The xsurf100 AMIX kernel driver (/dev/xsf0, major 56, STREAMS/DLPI) for the
+Individual Computers X-Surf 100 (AX88796B), as two kits for the AMIX
+Installer: xsurf100 for the stock 68030 kernel, xsurf100-040 for the
+68040/060 port kernels.  The card is found through AutoConfig, in Zorro II
+or, in an A3000, Zorro III space.  No AMIX kernel is included.

@@ -1,0 +1,5 @@
+The zz9000eth AMIX kernel driver (/dev/zz0, major 52, STREAMS/DLPI, polled)
+for the MNT ZZ9000's Ethernet port, as two kits for the AMIX Installer:
+zz9000eth for the stock 68030 kernel, zz9000eth-040 for the 68040/060 port
+kernels.  It is linked beside the zz9000 graphics driver.  No AMIX kernel
+is included.

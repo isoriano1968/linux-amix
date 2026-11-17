@@ -22,13 +22,18 @@ drivers, desktop and tools that fit the machine.
 - Machines: Amiga 3000, Amiga 2500, FS-UAE; CPU cards up to the 68060
   (Z3660, Mercury, A2630).
 - Graphics: Z3660 RTG, Picasso II, MNT ZZ9000, MNT VA2000, or the chipset.
-- Network: A2065, Z3660 Ethernet, Hydra Systems AmigaNet.
+- Network: A2065, Z3660 Ethernet, Hydra Systems AmigaNet, Individual
+  Computers X-Surf 100, the ZZ9000's Ethernet port.
+- Several cards in one machine: a main display (console and X) and the card
+  the install runs over, plus any further graphics and network cards.
 - The drivers for the cards you choose are linked into **your own** stock
   kernel on this computer, before anything is written; the stock kernel
   stays on the disk as a fallback.
-- Writes HDF files, a pvmk boot disk, ZuluSCSI/BlueSCSI images or files for
-  the Z3660's SD card, and an FS-UAE configuration; then installs the
-  packages over the network.
+- Writes HDF files, a pvmk boot disk and an FS-UAE configuration, or straight
+  onto the SD card of a ZuluSCSI, BlueSCSI or Z3660: it reads the card's
+  configuration (`zuluscsi.ini`, `bluescsi.ini`, `z3660cfg.txt`), stops if an
+  ID the AMIX disks need is taken, and adds their entries. Then it installs
+  the packages over the network.
 
 <p align="center">
 <img src="doc/screenshots/2-machine-dark.png" alt="Machine" width="400">
@@ -52,6 +57,9 @@ drivers, desktop and tools that fit the machine.
 | `amix-zz9000-kit` | MNT ZZ9000 driver kit (`/dev/zz9000`) | `/usr/share/amix-installer/zz9000` |
 | `amix-hydra-kit` | HydraNet Ethernet driver kit (`/dev/hya0`) | `/usr/share/amix-installer/hydra` |
 | `amix-va2000-kit` | MNT VA2000 driver kits, stock and 68040/060 kernels (`/dev/va2000`) | `/usr/share/amix-installer/va2000*` |
+| `amix-xsurf100-kit` | X-Surf 100 Ethernet driver kits, both kernel lines (`/dev/xsf0`) | `/usr/share/amix-installer/xsurf100*` |
+| `amix-zz9000eth-kit` | ZZ9000 Ethernet driver kits, both kernel lines (`/dev/zz0`) | `/usr/share/amix-installer/zz9000eth*` |
+| `amix-z3660eth-kit` | Z3660 Ethernet driver kit for the 68040/060 kernels (`/dev/zen0`) | `/usr/share/amix-installer/z3660eth-040` |
 | `amix-cross-dev` | everything for cross development (metapackage) | |
 
 `amix-installer` recommends the pvmk, gcc-27 and kit packages, so a plain
@@ -100,9 +108,10 @@ packages it needs are taken from `out/debs`). Downloads are kept in
 
 - The installer, the sysroot, both compilers, pvmk and the kits are the same
   builds as the OpenIndiana packages; the AMIX Installer runs on both.
-- The Picasso II, ZZ9000, HydraNet and VA2000 kits link into a stock AMIX
-  kernel with every check passing; boot tests of the new kernels, in FS-UAE
-  and on the real cards, are still to come.
+- Every kit links into a stock AMIX kernel (and the 040 kits into a 68040/060
+  port kernel) with every check passing, alone and all together; boot tests
+  of the new kernels, in FS-UAE and on the real cards, are still to come.
+- Two cards of the same type (two X-Surfs, say) are not supported yet.
 - The AMIX package repository the network install serves to AMIX is not a
   package yet: point the installer at one with `--repo DIR` or `AMIX_REPO`.
 - The X11, Motif and CDE cross libraries (`amix-cross-dev-desktop` on

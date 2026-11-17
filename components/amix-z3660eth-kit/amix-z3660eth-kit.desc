@@ -1,0 +1,4 @@
+The z3660eth AMIX kernel driver (/dev/zen0, major 51, STREAMS/DLPI, polled)
+for the Z3660's Ethernet, as a kit for the 68040/060 port kernels
+(z3660eth-040).  The Z3660 kernel line has it built in already.  No AMIX
+kernel is included.

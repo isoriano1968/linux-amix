@@ -31,14 +31,18 @@ with the reason.
 
 1. **Base system.** Where you start from (core HDF, tape image, running
    AMIX) and where the result goes (Z3660 SD card, ZuluSCSI/BlueSCSI SD card,
-   or HDF files only, e.g. for FS-UAE). Choose your core HDF here; the
+   or HDF files only, e.g. for FS-UAE). For an SD card, choose the card
+   itself (or the Z3660's `hdf` folder): the installer reads its
+   configuration and shows which SCSI IDs are in use. Choose your core HDF here; the
    installer reads it, read-only, and shows its partitions, the packages
    already installed and its kernels. For FS-UAE, choose your Kickstart ROM.
 
    ![Base system](screenshots/1-base-system.png)
 
 2. **Machine.** The Amiga (3000, 2500 or FS-UAE), the CPU card (Z3660,
-   Mercury, A2630...) and the keyboard.
+   Mercury, A2630...), the network card the install runs over (it gets the
+   host name's address), any further network cards (driver only: set their
+   addresses on AMIX), and the keyboard.
 
    ![Machine](screenshots/2-machine-dark.png)
 
@@ -53,12 +57,12 @@ with the reason.
 
    ![Kernel](screenshots/4-kernel.png)
 
-5. **Drivers.** The graphics card (Z3660 RTG, Picasso II, ZZ9000, VA2000 or
-   the chipset), the network card (A2065, Z3660 Ethernet, HydraNet) and the
-   other hardware. For a Picasso II, ZZ9000, VA2000 or HydraNet with the
-   stock kernel, the installer links that card's driver into **your own**
-   `/stand/unix` here, on Linux, and checks the result before anything is
-   written.
+5. **Drivers.** The main display (Z3660 RTG, Picasso II, ZZ9000, VA2000 or
+   the chipset: it gets the console and X), any further graphics cards, and
+   the other hardware. For every card whose driver is not in AMIX itself
+   (Picasso II, ZZ9000, VA2000, HydraNet, X-Surf 100, ZZ9000 Ethernet), the
+   installer links its driver into **your own** `/stand/unix` here, on Linux,
+   and checks the result before anything is written.
 
    ![Drivers](screenshots/5-drivers.png)
 
@@ -83,6 +87,17 @@ What **Create disks** writes, next to each other in the folder you chose:
 Every file is written as `.part`, read back and checked, then renamed; an
 SD card's HDFs are checked for fragments (the Z3660 firmware needs fewer
 than 32 pieces per file).
+
+On an SD card the AMIX disks use SCSI ID 6 (core), 5 (pvmk) and 1 (data).
+If one of them is taken by another image, the installer stops before
+writing anything and names the file. Otherwise, after the disks, it adds
+them to the card's configuration and keeps the old file as
+`<name>.amix-installer`:
+
+- ZuluSCSI/BlueSCSI: `[SCSI6]`, `[SCSI5]`, `[SCSI1]` sections (fixed disks,
+  no host quirks), the images where the card reads them;
+- Z3660: the images in `hdf/`, `hdf<N>` lines in free slots, `scsi6`,
+  `scsi5`, `scsi1`, and `scsiboot YES` for pvmk.
 
 ## 3. Install the packages over the network
 

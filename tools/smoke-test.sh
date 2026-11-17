@@ -16,8 +16,9 @@ for k in sorted(kernel.DRIVERS):
     if r.stdout != "install ok installed":
         print("kit", k, "not installed (%s)" % pkg)
         continue
-    assert kernel.find_kit(k), "%s is installed, but the installer does not find it" % pkg
-    print("kit", k, kernel.find_kit(k))
+    found = [kernel.find_kit(k, line) for line in kernel.LINES if line in kernel.DRIVERS[k].lines]
+    assert any(found), "%s is installed, but the installer does not find it" % pkg
+    print("kit", k, ", ".join(f for f in found if f))
 print("ld", kernel.find_ld()); print("as", kernel.find_as())
 assert kernel.find_ld() and kernel.find_as()
 assert kernel.find_io_init_patch([])
@@ -43,8 +44,10 @@ sys.path.insert(0, "/usr/lib/amix-installer")
 from amix_installer import kernel
 base = open("/kernel/unix", "rb").read()
 d = tempfile.mkdtemp()
-have = [k for k in ("rtgfb", "zz9000", "va2000", "hydra") if kernel.find_kit(k)]
-sets = [[k] for k in have] + [[g, "hydra"] for g in have if g != "hydra" and "hydra" in have]
+have = [k for k in sorted(kernel.DRIVERS) if kernel.find_kit(k)]
+gfx = [k for k in have if kernel.DRIVERS[k].kind == "graphics"]
+net = [k for k in have if kernel.DRIVERS[k].kind == "network"]
+sets = [[k] for k in have] + [[g, n] for g in gfx for n in net[:1]] + [gfx + net]
 for ids in sets:
     print("+".join(ids), kernel.relink(base, d + "/u", ids, None, kernel.find_ld(), asm=kernel.find_as()))
 shutil.rmtree(d)

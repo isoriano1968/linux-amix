@@ -12,6 +12,7 @@
 # Packages land in out/debs.
 COMPONENTS = amix-sysroot amix-gcc-27 amix-gcc-14 amix-amixc99 \
 	amix-kernel-kit-tools amix-rtgfb-kit amix-zz9000-kit amix-hydra-kit amix-va2000-kit \
+	amix-xsurf100-kit amix-zz9000eth-kit amix-z3660eth-kit \
 	amix-pvmk amix-installer amix-cross-dev
 OUT ?= $(CURDIR)/out/debs
 
