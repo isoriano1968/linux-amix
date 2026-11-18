@@ -1,0 +1,7 @@
+The Individual Computers Buddha and Catweasel Z-II IDE boards (Zorro II) as
+controllers of AMIX's SCSI disk layer: their drives are ordinary dd disks,
+/dev/dsk and /dev/rdsk cNdUsS (port 0 units 6 and 5, port 1 units 3 and 2,
+port 2 units 1 and 0), so AMIX can boot with root on a Buddha.  The driver is
+Emre Bastuz's amix-gayle-ide (MIT), linked into the kernel with polled I/O,
+as kits for the stock 68030 kernel and the 68040/060 port kernel.  No AMIX
+kernel is included.

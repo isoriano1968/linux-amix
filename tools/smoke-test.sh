@@ -70,7 +70,12 @@ d = tempfile.mkdtemp()
 have = [k for k in sorted(kernel.DRIVERS) if "040" in kernel.DRIVERS[k].lines
         and kernel.find_kit(k, "040")]
 order = {kd: i for i, kd in enumerate(kernel.KIND_ORDER)}
-for ids in [[k] for k in have] + [sorted(have, key=lambda k: order[kernel.DRIVERS[k].kind])]:
+# all kits together, but the two disk table kits (buddha, z3660scsi) one at a time
+alone = ("buddha", "z3660scsi")
+rest = [k for k in have if k not in alone]
+alls = [rest + [k] for k in alone if k in have] or [rest]
+for ids in [[k] for k in have] + [sorted(a, key=lambda k: order[kernel.DRIVERS[k].kind])
+                                  for a in alls]:
     print("040 +" + "+".join(ids), kernel.relink(data, d + "/u", ids))
 shutil.rmtree(d)
 PY

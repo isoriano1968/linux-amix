@@ -65,6 +65,7 @@ drivers, desktop and tools that fit the machine.
 | `amix-zz9000eth-kit` | ZZ9000 Ethernet driver kits, both kernel lines (`/dev/zz0`) | `/usr/share/amix-installer/zz9000eth*` |
 | `amix-z3660eth-kit` | Z3660 Ethernet driver kit for the 68040/060 kernels (`/dev/zen0`) | `/usr/share/amix-installer/z3660eth-040` |
 | `amix-z3660scsi-kit` | the Z3660's SD card as a SCSI controller, for the 68040/060 kernels | `/usr/share/amix-installer/z3660scsi-040` |
+| `amix-buddha-kit` | the Buddha and Catweasel Z-II IDE (polled), for the 68030 and 68040/060 kernels | `/usr/share/amix-installer/buddha`, `buddha-040` |
 | `amix-cross-dev` | everything for cross development (metapackage) | |
 
 **ZZ9000 and Z3660 graphics.** The ZZ9000 driver also drives the RTG
