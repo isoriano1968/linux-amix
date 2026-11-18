@@ -1,0 +1,7 @@
+The NCR 53C710 Zorro III SCSI-2 boards -- Commodore A4091, A4092 and A4770 --
+as controllers of AMIX's SCSI disk layer: their drives are ordinary dd disks,
+/dev/dsk and /dev/rdsk cNdUsS at their SCSI IDs, so AMIX can boot with root
+on an A4091.  The driver is amigaux's A4091 driver by Jussi Alanaerae (MIT),
+linked into the kernel with polled I/O, as kits for the stock 68030 kernel
+and the 68040/060 port kernel (there through the port's DMA cache service).
+No AMIX kernel is included.
