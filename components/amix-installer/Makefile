@@ -2,7 +2,7 @@
 # for an Amiga 3000/2500 or FS-UAE from your own AMIX core system.  Same files
 # as the OpenIndiana package desktop/amix-installer, under /usr.
 NAME      = amix-installer
-VERSION   = 0.6.2
+VERSION   = 0.6.3
 ARCH      = all
 SECTION   = otherosfs
 DEPENDS   = python3 (>= 3.9), python3-gi, gir1.2-gtk-4.0 (>= 4.12), gir1.2-adw-1 (>= 1.4)
@@ -13,10 +13,10 @@ RECOMMENDS = amix-pvmk, amix-gcc-27, amix-kernel-kit-tools, amix-rtgfb-kit, \
 SUMMARY   = makes Amiga UNIX (AMIX) disks for an Amiga or FS-UAE
 
 SOURCES   = au
-AU_COMMIT = 1c63a2bb53f0e03ea7858f2856957cc561daf22d
+AU_COMMIT = b89342784f4b7ec6cb61ec5b9aa1d89c76d854f4
 URL_au    = https://github.com/isoriano1968/amix-userland/archive/$(AU_COMMIT).tar.gz
 FILE_au   = amix-userland-$(AU_COMMIT).tar.gz
-SHA256_au = 97785766ba2abab00f665d42883b4de6fde67297b70cded81b98000ddf1c1a98
+SHA256_au = e6db1fcff420fcf9a1481831d2395d88cf4e2e4d8b77e1bbc05a8900d2477893
 DIR_au    = amix-userland-$(AU_COMMIT)
 
 APP       = $(SRC_au)/components/desktop/amix-installer
