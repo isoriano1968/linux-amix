@@ -49,6 +49,12 @@ drivers, desktop and tools that fit the machine.
   as every published package, into your own repository, which Serve Packages
   then serves. Host programs (the installer itself, the compilers, pvmk) are
   not built there: they come as packages, like this one.
+- **Updates** (new in 0.9): at start and once a day the installer looks for
+  a newer linux-amix release in the background (silent offline). Update
+  downloads the new `amix-installer` `.deb` from the release, checks it
+  against the release's `SHA256SUMS` (any mismatch: nothing is installed),
+  installs it with `pkexec apt-get install` and offers a restart. **Check
+  for Updates** in the main menu turns it off.
 
 <p align="center">
 <img src="doc/screenshots/2-machine-dark.png" alt="Machine" width="400">
@@ -97,8 +103,8 @@ boot disks.
 The packages of each release are on the
 [releases page](https://github.com/isoriano1968/linux-amix/releases); the
 current one is
-[v0.8.4](https://github.com/isoriano1968/linux-amix/releases/tag/v0.8.4)
-(AMIX Installer 0.8.3). Download the `.deb` files and `SHA256SUMS` into one
+[v0.9.0](https://github.com/isoriano1968/linux-amix/releases/tag/v0.9.0)
+(AMIX Installer 0.9.0). Download the `.deb` files and `SHA256SUMS` into one
 folder, then:
 
 ```sh
@@ -175,7 +181,7 @@ Afterwards install from `out/repo` as under [Install](#install); the packages
 
 ## Status
 
-- The installer (0.8.3), the sysroot, both compilers, pvmk and the kits are
+- The installer (0.9.0), the sysroot, both compilers, pvmk and the kits are
   built from the same pinned sources as the OpenIndiana packages; the AMIX
   Installer runs on both.
 - `amix-gcc-14` builds for the 68020 ISA tuned for the 68060 by default, so a
