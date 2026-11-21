@@ -97,7 +97,7 @@ boot disks.
 The packages of each release are on the
 [releases page](https://github.com/isoriano1968/linux-amix/releases); the
 current one is
-[v0.8.3](https://github.com/isoriano1968/linux-amix/releases/tag/v0.8.3)
+[v0.8.4](https://github.com/isoriano1968/linux-amix/releases/tag/v0.8.4)
 (AMIX Installer 0.8.3). Download the `.deb` files and `SHA256SUMS` into one
 folder, then:
 
@@ -175,12 +175,12 @@ Afterwards install from `out/repo` as under [Install](#install); the packages
 
 ## Status
 
-- The installer (0.8.3), the sysroot, gcc 2.7, pvmk and the kits are the
-  same builds as the OpenIndiana packages; the AMIX Installer runs on both.
-- `amix-gcc-14` still carries the 68060 `libamixc99.a`, and `amix-amixc99`
-  is still version 1 (the archive). On OpenIndiana and AMIX, libamixc99 is
-  version 2 now, a shared library for the 68020-60 baseline; that change
-  comes to these two packages next.
+- The installer (0.8.3), the sysroot, both compilers, pvmk and the kits are
+  built from the same pinned sources as the OpenIndiana packages; the AMIX
+  Installer runs on both.
+- `amix-gcc-14` builds for the 68020 ISA tuned for the 68060 by default, so a
+  program runs on every AMIX machine, and links the shared `libamixc99.so.1`
+  (`amix-amixc99` 2 puts it into the sysroot), the same library AMIX has.
 - The installer makes our 68040/060 kernels from your own stock kernel with
   `amix-kernel-040` (amix-kernel-kit-tools), fetching NetBSD 10.1's
   `syssrc.tgz` once (76 MB), with the m68k-elf tools of amix-gcc-14 (Debian's

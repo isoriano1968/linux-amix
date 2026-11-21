@@ -1,8 +1,11 @@
 The modern AMIX cross compiler: gcc 14.2.0 with C and C++ (libstdc++,
 exceptions, RTTI) and binutils 2.43.1 for m68k-elf, the ABI of AMIX 2.1
 userland on the Amiga, in /opt/m68k-amix.  Its specs link AMIX programs
-against the AMIX sysroot (/opt/m68k-amix-sysroot), and libamixc99 adds the
-C99 and POSIX functions AMIX's libc predates.  Code built with -mcpu=68060
-has no 64-bit multiply or divide, so it runs on every 68020-68060.
+against the AMIX sysroot (/opt/m68k-amix-sysroot), and the shared
+libamixc99.so.1 adds the C99 and POSIX functions AMIX's libc predates.  By
+default code is built for the 68020 ISA tuned for the 68060 (no 64-bit
+multiply or divide, no 040/060-only FPU forms), so it runs on every AMIX
+machine from a 68030 A3000 to a 68060; amix_cpu() tells a program which
+CPU it runs on.
 
 For applications; the kernel and drivers use amix-gcc-27.

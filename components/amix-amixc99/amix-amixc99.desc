@@ -1,3 +1,5 @@
-libamixc99.a, the C99 and POSIX functions AMIX SVR4.0's libc lacks (as
-linked by amix-gcc-14), with its headers and pkg-config file, in the AMIX
-sysroot /opt/m68k-amix-sysroot/usr/local, for builds that name it.
+libamixc99.so.1, the C99 and POSIX functions AMIX SVR4.0's libc lacks
+(snprintf and friends, usleep, strcasecmp, __cxa_atexit, amix_cpu), as the
+shared library amix-gcc-14 builds and links, in the AMIX sysroot
+/opt/m68k-amix-sysroot/usr/lib, with amixc99.pc, amix_cpu.h and the C99
+headers for gcc 2.7 under usr/local and its link stub for AMIX.
