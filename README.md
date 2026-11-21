@@ -37,6 +37,18 @@ drivers, desktop and tools that fit the machine.
 - Files that exist in the output folder are overwritten (a file it did not
   write only after you confirm it) or kept as `.bak`; the old files are
   replaced only when every new one is written and checked.
+- **Serve Packages** serves an AMIX package repository to the Amiga over the
+  network (`pkg refresh`, `pkg update` on AMIX), with the line to configure
+  the Amiga's publisher.
+- **Build Packages** (new in 0.8): builds AMIX packages on this computer from
+  [amix-userland](https://github.com/isoriano1968/amix-userland), the master
+  repository. The checkout is updated (`git pull`) when the installer starts,
+  on Refresh, and when an Amiga runs `pkg refresh`; the components that are
+  new or newer than the repository are listed and built with `amix-gcc-14`
+  (`amix-gcc-27` for the components that need it), through the same checks
+  as every published package, into your own repository, which Serve Packages
+  then serves. Host programs (the installer itself, the compilers, pvmk) are
+  not built there: they come as packages, like this one.
 
 <p align="center">
 <img src="doc/screenshots/2-machine-dark.png" alt="Machine" width="400">
@@ -79,6 +91,23 @@ RGB565 only: it offers 8-, 15- and 16-bit modes, but **no 24/32-bit modes**
 `amix-installer` recommends the pvmk, gcc-27 and kit packages, so a plain
 `apt install amix-installer` brings everything it needs to make kernels and
 boot disks.
+
+## Download
+
+The packages of each release are on the
+[releases page](https://github.com/isoriano1968/linux-amix/releases); the
+current one is
+[v0.8.3](https://github.com/isoriano1968/linux-amix/releases/tag/v0.8.3)
+(AMIX Installer 0.8.3). Download the `.deb` files and `SHA256SUMS` into one
+folder, then:
+
+```sh
+sha256sum -c SHA256SUMS                  # every file: OK
+sudo apt install ./amix-*.deb            # all of them, dependencies from Debian
+```
+
+Or only what you need, for example `sudo apt install ./amix-installer_*.deb
+./amix-pvmk_*.deb ./amix-gcc-27_*.deb ./amix-sysroot_*.deb ./amix-*-kit_*.deb`.
 
 ## Install
 
@@ -131,7 +160,8 @@ to `/opt`), so do it on a machine or VM where that is acceptable:
 sudo apt install build-essential make m4 bison flex patch file curl \
     ca-certificates xz-utils bzip2 gzip tar autotools-dev dpkg-dev lintian \
     libgmp-dev libmpfr-dev libmpc-dev zlib1g-dev libzstd-dev \
-    python3 python3-cairo python3-gi gir1.2-gtk-4.0 gir1.2-adw-1
+    python3 python3-cairo python3-gi gir1.2-gtk-4.0 gir1.2-adw-1 \
+    git pkg-config
 sudo make world        # every package in order into out/debs, each installed
                        # on this system before the next one builds
 make repo              # the apt repository in out/repo
@@ -145,8 +175,12 @@ Afterwards install from `out/repo` as under [Install](#install); the packages
 
 ## Status
 
-- The installer, the sysroot, both compilers, pvmk and the kits are the same
-  builds as the OpenIndiana packages; the AMIX Installer runs on both.
+- The installer (0.8.3), the sysroot, gcc 2.7, pvmk and the kits are the
+  same builds as the OpenIndiana packages; the AMIX Installer runs on both.
+- `amix-gcc-14` still carries the 68060 `libamixc99.a`, and `amix-amixc99`
+  is still version 1 (the archive). On OpenIndiana and AMIX, libamixc99 is
+  version 2 now, a shared library for the 68020-60 baseline; that change
+  comes to these two packages next.
 - The installer makes our 68040/060 kernels from your own stock kernel with
   `amix-kernel-040` (amix-kernel-kit-tools), fetching NetBSD 10.1's
   `syssrc.tgz` once (76 MB), with the m68k-elf tools of amix-gcc-14 (Debian's
