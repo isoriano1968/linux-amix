@@ -103,8 +103,8 @@ boot disks.
 The packages of each release are on the
 [releases page](https://github.com/isoriano1968/linux-amix/releases); the
 current one is
-[v0.9.0](https://github.com/isoriano1968/linux-amix/releases/tag/v0.9.0)
-(AMIX Installer 0.9.0). Download the `.deb` files and `SHA256SUMS` into one
+[v0.9.1](https://github.com/isoriano1968/linux-amix/releases/tag/v0.9.1)
+(AMIX Installer 0.9.1). Download the `.deb` files and `SHA256SUMS` into one
 folder, then:
 
 ```sh
@@ -181,7 +181,7 @@ Afterwards install from `out/repo` as under [Install](#install); the packages
 
 ## Status
 
-- The installer (0.9.0), the sysroot, both compilers, pvmk and the kits are
+- The installer (0.9.1), the sysroot, both compilers, pvmk and the kits are
   built from the same pinned sources as the OpenIndiana packages; the AMIX
   Installer runs on both.
 - `amix-gcc-14` builds for the 68020 ISA tuned for the 68060 by default, so a
