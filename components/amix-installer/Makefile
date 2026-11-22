@@ -2,7 +2,7 @@
 # for an Amiga 3000/2500 or FS-UAE from your own AMIX core system.  Same files
 # as the OpenIndiana package desktop/amix-installer, under /usr.
 NAME      = amix-installer
-VERSION   = 0.9.1
+VERSION   = 0.9.2
 ARCH      = all
 SECTION   = otherosfs
 DEPENDS   = python3 (>= 3.9), python3-gi, gir1.2-gtk-4.0 (>= 4.12), gir1.2-adw-1 (>= 1.4), \
@@ -13,7 +13,7 @@ DEPENDS   = python3 (>= 3.9), python3-gi, gir1.2-gtk-4.0 (>= 4.12), gir1.2-adw-1
 RECOMMENDS = amix-pvmk, amix-gcc-14, amix-sysroot, amix-gcc-27, amix-kernel-kit-tools, amix-rtgfb-kit, \
 	amix-zz9000-kit, amix-va2000-kit, amix-hydra-kit, amix-xsurf100-kit, \
 	amix-zz9000eth-kit, amix-z3660eth-kit, amix-z3660scsi-kit, amix-z3660rtg-kit, amix-buddha-kit, amix-a4091-kit, fs-uae, xdg-user-dirs, pkexec
-# the Debian host tools with which every component builds in the Build tab
+# the Debian host tools the components need in the Build tab
 # (amix-userland's components/desktop/amix-installer/README.md): suggested
 # only, as most of them matter for a few components
 SUGGESTS  = meson, ninja-build, cmake, autoconf, automake, libtool, gettext, texinfo, \
@@ -23,10 +23,10 @@ SUGGESTS  = meson, ninja-build, cmake, autoconf, automake, libtool, gettext, tex
 SUMMARY   = makes Amiga UNIX (AMIX) disks for an Amiga or FS-UAE
 
 SOURCES   = au
-AU_COMMIT = 554b20a0e2f4464d3cf3d772ac4dc47e8ff38378
+AU_COMMIT = eb45709ead8ed771f2b0183cdeb12b808bdd0c5f
 URL_au    = https://github.com/isoriano1968/amix-userland/archive/$(AU_COMMIT).tar.gz
 FILE_au   = amix-userland-$(AU_COMMIT).tar.gz
-SHA256_au = a759acbf2a272a5b1624dd4db6f08e231f799ae32a836dfe461a3dd86a61c87b
+SHA256_au = 82738ba4ddaa242a6f3ee44927ec1527d94f79810d6ef473c1fb4a851aae2144
 DIR_au    = amix-userland-$(AU_COMMIT)
 
 APP       = $(SRC_au)/components/desktop/amix-installer
